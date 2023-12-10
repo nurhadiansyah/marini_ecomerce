@@ -100,6 +100,7 @@ https://templatemo.com/tm-559-zay-shop
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/login">Login</a></li>
                             <li><a class="dropdown-item" href="/register">Register</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         </ul> 
                     </div>
                     

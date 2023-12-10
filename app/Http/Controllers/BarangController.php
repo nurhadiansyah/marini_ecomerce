@@ -16,6 +16,7 @@ class BarangController extends Controller
      */
     public function index()
     {
+        
 
         $data = DB :: table('kategoris')->select('id', 'nama_kat')
                 ->orderBy('nama_kat', 'asc')->get();

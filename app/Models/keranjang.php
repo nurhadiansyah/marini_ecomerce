@@ -15,4 +15,8 @@ class Keranjang extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class);
+    }
 }
