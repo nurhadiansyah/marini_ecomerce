@@ -16,7 +16,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('admin1.transaksi.transaksi');
+        $transaksis = Transaksi::get();
+        return view('admin1.transaksi.transaksi',[
+            'transaksis' => $transaksis
+        ]);
     }
 
     /**
@@ -98,7 +101,18 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
-        //
+        $rules = [
+            'status' => 'required',
+        ];
+
+
+
+        $validatedData = $request->validate($rules);
+
+        Transaksi::where('id', $transaksi->id)
+            ->update($validatedData);
+
+        return redirect('/transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');
     }
 
     /**
