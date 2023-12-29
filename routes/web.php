@@ -34,7 +34,7 @@ Route::get('/', function () {
 Route::resource('/Home', HomeController::class);
 Route::resource('/About', TentangController::class);
 Route::resource('/Shop', ShopController::class);
-Route::resource('/Contac', ContacController::class);
+Route::resource('/profil', ContacController::class);
 Route::resource('/keranjang', KeranjangController::class);
 
 
