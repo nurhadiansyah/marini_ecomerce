@@ -53,6 +53,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'kuantitas'=> 'required',
             'harga'=> 'required',
+            'terjual'=> 'required',
             'kategori_id'=>'Required'
 
         ]);

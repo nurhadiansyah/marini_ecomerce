@@ -41,11 +41,12 @@ class RegisterController extends Controller
             'No_hp'=>'required',
             'email'=>'required|unique:users',
             'password'=>'required',
+            'level'=>'required',
             'tgl_lahir'=>'required'
             ]);
 
             $validatedData['password'] = bcrypt($validatedData['password']);
-            
+
             User::create($validatedData);
 
             // die(print_r($request));
