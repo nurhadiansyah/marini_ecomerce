@@ -16,11 +16,11 @@ class BarangController extends Controller
      */
     public function index()
     {
-        
+
 
         $data = DB :: table('kategoris')->select('id', 'nama_kat')
                 ->orderBy('nama_kat', 'asc')->get();
-        
+
         // $barangs = DB::table('barangs')->get();
         $barangs = Barang::all();
         // $kategori = Barang::find()->phone;
@@ -54,14 +54,14 @@ class BarangController extends Controller
             'kuantitas'=> 'required',
             'harga'=> 'required',
             'kategori_id'=>'Required'
-            
+
         ]);
         // die(print_r($validatedData));
 
         if($request->file('gambar')){
             $validatedData['gambar'] = $request -> file('gambar') -> store('Barang_img');
         }
-        
+
 
         Barang::create($validatedData);
         return redirect('/barang');
@@ -102,11 +102,10 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'kuantitas'=> 'required',
             'harga'=> 'required',
-            'kuantitas',
             'kategori_id'=>'Required'
-                       
+
         ];
-        
+
         $validatedData = $request->validate($rules);
 
         if($request->file('gambar')){

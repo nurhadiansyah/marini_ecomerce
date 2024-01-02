@@ -6,6 +6,7 @@ use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\Keranjang;
 use App\Models\User;
+use App\Models\Barang;
 
 class TransaksiController extends Controller
 {
@@ -109,6 +110,16 @@ class TransaksiController extends Controller
 
         $validatedData = $request->validate($rules);
 
+        if ($validatedData['status'] == "Selesai") {
+            $barang_id = $transaksi->barang->id;
+            $terjual_sekarang = $transaksi->barang->terjual;
+            $terjual_terbaru = $transaksi->jumlah;
+
+            $terjual_total = $terjual_sekarang + $terjual_terbaru;
+
+            Barang::where('id', $barang_id)
+            ->update(['terjual' => $terjual_total]);
+        }
         Transaksi::where('id', $transaksi->id)
             ->update($validatedData);
 
