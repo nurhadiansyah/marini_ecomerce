@@ -66,6 +66,8 @@
 
                   <form class="row g-3 needs-validation" action="/registrasi" method="POST">
                     @csrf
+
+                    <input type="hidden" name="level" value="0">
                     <div class="col-12">
                       <label for="name" class="form-label">Nama</label>
                       <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" required>
@@ -123,7 +125,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-               
+
               </div> --}}
 
             </div>

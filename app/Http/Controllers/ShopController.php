@@ -16,7 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $barangs = DB::table('barangs')->get();
+        $barangs = DB::table('barangs')->orderBy('terjual')->get();
         $kategoris = DB::table('kategoris')->get();
 
         return view('tampilantoko.shop.shop',compact('barangs','kategoris'));

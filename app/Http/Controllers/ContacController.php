@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contac;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class ContacController extends Controller
@@ -14,8 +15,11 @@ class ContacController extends Controller
      */
     public function index()
     {
-        return view('tampilantoko.contac.contac');
-        
+        $transaksis = Transaksi::where('user_id', auth()->user()->id)->orderby('updated_at', 'DESC')->get();
+        return view('tampilantoko.contac.contac',[
+            'transaksis' => $transaksis
+        ]);
+
     }
 
     /**

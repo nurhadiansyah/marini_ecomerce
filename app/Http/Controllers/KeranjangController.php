@@ -16,9 +16,9 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        
+
         // $keranjangs = DB::table('keranjangs')->get();
-        
+
         $id = auth()->user()->id;
         $keranjangs = Keranjang::where('user_id', $id)->get();
 
@@ -28,7 +28,7 @@ class KeranjangController extends Controller
 
         return view('tampilantoko.keranjang.keranjang',[
             'keranjangs'=>$keranjangs ]);
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class KeranjangController extends Controller
             'barang_id'=> 'required',
             'user_id'=> 'required',
             'jumlah'=>'Required'
-            
+
         ]);
         $total= $request->harga * $request->jumlah;
         $validatedData['total']=$total;

@@ -23,7 +23,7 @@
 
         <!-- Basic Modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-          Tambah Data 
+          Tambah Data
         </button>
         <div class="modal fade" id="basicModal" tabindex="-1">
           <div class="modal-dialog modal-lg">
@@ -36,6 +36,8 @@
                 <div class="row">
                   <form method="POST" action="/barang" enctype="multipart/form-data">
                     @csrf
+
+                    <input type="hidden" name="terjual" value="0">
                     <div class="row">
                       <div class="col-md-12">
                         <label for="nama_barang" class="form-label">Nama barang</label>
@@ -74,7 +76,7 @@
                         <input name="gambar" class="form-control" type="file" id="gambar" onchange="previewImage()">
                       </div>
                       <span class="fs-12 fst-italic">*noted:upload gambar</span>
-                    
+
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Submit</button>
                       <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -82,9 +84,9 @@
                   </div>
                   </form>
                 </div>
-                
+
               </div>
-              
+
             </div>
           </div>
         </div><!-- End Basic Modal-->
@@ -107,7 +109,7 @@
              @endphp
             @foreach($barangs as $barang)
             {{-- @foreach($satas as $sata) --}}
-            
+
             <tr>
                 <td>{{$no ++}}</td>
                 <td>{{ $barang->nama_barang }}</td>
@@ -116,7 +118,7 @@
                 <td>{{ $barang->terjual }}</td>
                 {{-- <td>{{ $barang->kategori()->nama_kat}} </td> --}}
                 <td>{{ $barang->kategori->nama_kat}} </td>
-                
+
                 <td>
                   <div style="max-width:150px; overflow:hidden;">
                     <img src="{{ asset('storage/' . $barang->gambar) }}" alt="" class="img-fluid">
@@ -130,14 +132,14 @@
                         @method('DELETE')
                         @csrf
                         <div class="btn-group">
-                            <button class="btn btn-danger" type="submit" 
-                            onclick="return confirm('Yakin ingin menghapus data?')" 
+                            <button class="btn btn-danger" type="submit"
+                            onclick="return confirm('Yakin ingin menghapus data?')"
                             data-toggle="tooltip" title="Hapus">
                             <i class="bi bi-trash"></i></button>
                         </div>
                     </form>
                   </div>
-                    
+
                     {{-- modal Edit --}}
                     <div class="col-md-3">
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal{{$barang->id}}">
@@ -191,11 +193,11 @@
                                                 <input type="hidden" name="oldImage" value="{{$barang->gambar}}">
                                                     @if($barang->gambar)
                                                         <img src="{{asset('storage/'.$barang->gambar)}}" class="img-preview img-fluid img-fluid mb-3 col-sm-5 d-block">
-                                                    @else 
+                                                    @else
                                                       <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                                                     @endif
                                                     <input name="gambar" class="form-control col-md-12" type="file" id="gambar" onchange="previewImage()" value="{{ $barang->gambar }}">
-                                                    
+
                                                     <span class="fs-12 fst-italic">*noted:upload gambar</span>
                                             </div>
                                             <div class="text-center">
@@ -204,12 +206,12 @@
                                             </div>
                                       </form>
                                       </div>
-                                      
+
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              
+
                               {{--modal end--}}
 
                               {{-- tambah barang --}}
@@ -240,7 +242,7 @@
                                         </div>
                                   </form>
                                   </div>
-                                  
+
                                 </div>
                               </div>
                             </div>
@@ -280,14 +282,14 @@
                                          </div>
                                    </form>
                                    </div>
-                                   
+
                                  </div>
                                </div>
                              </div>
                            </div>
                   </div>
                 </td>
-                
+
             </tr>
             {{-- Modal Edit --}}
 
