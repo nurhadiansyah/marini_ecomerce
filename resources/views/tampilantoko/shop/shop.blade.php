@@ -14,20 +14,20 @@
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
                             @foreach($kategoris as $data)
-                            <li><a class="text-decoration-none" href="#">{{ $data->nama_kat }}</a></li>
+                            <li><a class="text-decoration-none" href="/ShopKategori/{{ $data->id }}">{{ $data->nama_kat }}</a></li>
                             @endforeach
                         </ul>
                     </li>
                 </ul>
-                
+
             </div>
 
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-md-6">
-                       
+
                     </div>
-                    <div class="col-md-6 pb-4">
+                    {{-- <div class="col-md-6 pb-4">
                         <div class="d-flex">
                             <select class="form-control">
                                 <option>Featured</option>
@@ -35,12 +35,12 @@
                                 <option>Item</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 {{-- baris barang --}}
                 <div class="row">
-            
+
             @foreach($barangs as $barang)
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                
+
                                 <a href="/shop/{{$barang->id}}" class="h3 text-decoration-none">{{ $barang->nama_barang }}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>{{ $barang->kategori_id}}</li>
@@ -398,7 +398,7 @@
     <!-- End Content -->
 
     <!-- Start Brands -->
-    <section class="bg-light py-5">
+    {{-- <section class="bg-light py-5">
         <div class="container my-4">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
@@ -498,6 +498,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--End Brands-->
 @endsection

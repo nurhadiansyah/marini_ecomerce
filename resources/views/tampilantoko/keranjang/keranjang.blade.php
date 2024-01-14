@@ -40,8 +40,8 @@
                 @endphp
                 @endforeach
 
-                <a href="http://masuk{{ $keranjang->total }}">coba</a>
-                <button type="submit">Checkout</button>
+                {{-- <a href="http://masuk{{ $keranjang->total }}">coba</a> --}}
+                <button class="btn btn-success" type="submit">Checkout</button>
             </form>
 
         </div>

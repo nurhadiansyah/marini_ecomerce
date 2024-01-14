@@ -3,7 +3,7 @@
 
 <head>
     <title>Cahaya Marini| Home</title>
-    <meta charset="utf-8" > 
+    <meta charset="utf-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="/template/assets/img/apple-icon.png">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="/template/assets/css/fontawesome.min.css">
 <!--
-    
+
 TemplateMo 559 Zay Shop
 
 https://templatemo.com/tm-559-zay-shop
@@ -54,7 +54,7 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                Cahaya Marini
+                Cahaya Wage
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,32 +79,35 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                    {{-- <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                         <div class="input-group">
                             <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
                             <div class="input-group-text">
                                 <i class="fa fa-fw fa-search"></i>
                             </div>
                         </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                    </div> --}}
+                    {{-- <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
+                    </a> --}}
                     <a class="nav-icon position-relative text-decoration-none" href="/keranjang">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        {{-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> --}}
                     </a>
                     <div class="dropdown">
                         <a class="dropdown-toggle fa fa-fw fa-user text-dark mr-3" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                        </a>  
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/login">Login</a></li>
-                            <li><a class="dropdown-item" href="/register">Register</a></li>
-                            <li><a class="dropdown-item" href="/profil">profil</a></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        </ul> 
+                            @auth
+                                <li><a class="dropdown-item" href="/profil">Profil</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            @else
+                                <li><a class="dropdown-item" href="/login">Login</a></li>
+                                <li><a class="dropdown-item" href="/register">Register</a></li>
+                            @endauth
+                        </ul>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -134,7 +137,7 @@ https://templatemo.com/tm-559-zay-shop
         @yield('content')
     </div>
 
-    
+
 
 
     <!-- Start Footer -->
@@ -221,7 +224,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name 
+                            Copyright &copy; 2021 Company Name
                             | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
                         </p>
                     </div>

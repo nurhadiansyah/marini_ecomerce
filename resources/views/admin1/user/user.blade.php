@@ -5,13 +5,7 @@
 
     <div class="pagetitle">
       <h1>Data User</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
-        </ol>
-      </nav>
+        
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -38,7 +32,14 @@
                   <td>{{$no ++}}</td>
                   <td>{{ $data->name }}</td>
                   <td>{{ $data->email }}</td>
-                  <td>{{ $data->level }}</td>
+
+                  <td>
+                    @if($data->level ==1)
+                        admin
+                    @else
+                        user
+                    @endif
+                  </td>
                   <td style="text-align: center;">
                     <div class="row ">
                         {{-- button delete --}}
@@ -47,18 +48,18 @@
                             @method('DELETE')
                             @csrf
                             <div class="btn-group">
-                                <button class="btn btn-danger" type="submit" 
-                                onclick="return confirm('Yakin ingin menghapus data?')" 
+                                <button class="btn btn-danger" type="submit"
+                                onclick="return confirm('Yakin ingin menghapus data?')"
                                 data-toggle="tooltip" title="Hapus">
                                 <i class="bi bi-trash"></i></button>
                             </div>
                         </form>
                       </div>
-                        
+
                         {{-- modal Edit --}}
                         <div class="col-md-2">
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal{{ $data->id }}">
-                                    
+
                             <i class="bi bi-pencil-square"></i>
                             </button>
                             {{-- modal edit --}}
@@ -91,11 +92,11 @@
                                             <div class="col-md-12">
                                             <label for="level">Level</label>
                                             <select class="form-select " id="level" aria-label="Floating label select example">
-                                              
+
                                               <option selected value="{{ $data->level }}" >{{ $data->level }}</option>
                                               <option value="1">Admin</option>
                                               <option value="0">User</option>
-                                              
+
                                             </select>
                                             </div>
                                           </div>
@@ -106,16 +107,16 @@
                                           </div>
                                     </form>
                                     </div>
-                                    
+
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            
+
                             {{--modal end--}}
                         </div>
                       </div>
-                      
+
                     </td>
                   </tr>
                    @endforeach

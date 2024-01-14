@@ -22,6 +22,20 @@ class ShopController extends Controller
         return view('tampilantoko.shop.shop',compact('barangs','kategoris'));
     }
 
+    public function shopkategori(Request $request)
+    {
+        $id = $request->id;
+        $barangs = DB::table('barangs')->orderBy('terjual')->where('kategori_id', $id)->get();
+        $kategoris = DB::table('kategoris')->get();
+
+        // die(print_r($id));
+
+        return view('tampilantoko.shop.shop',[
+            'barangs' => $barangs,
+            'kategoris' => $kategoris,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,6 +65,8 @@ class ShopController extends Controller
      */
     public function show(Shop $Shop)
     {
+
+
         return view('tampilantoko.shop.shopsingle', [
             'shop' => $Shop,
         ]);

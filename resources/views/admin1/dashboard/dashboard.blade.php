@@ -16,7 +16,7 @@
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  
+
                 </div>
 
                 <div class="card-body">
@@ -27,8 +27,18 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>
+                        @php
+                            $terjual = 0;
+                        @endphp
+                        @foreach ($barangs as $barang)
+                            @php
+                                $terjual += $barang->terjual;
+                            @endphp
+                        @endforeach
+                        {{ $terjual }} Barang Terjual
+                      </h6>
+                      {{-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
                   </div>
@@ -43,19 +53,30 @@
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  
+
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">harga barang terjual </span></h5>
+                  <h5 class="card-title">Harga Barang Terjual </span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="bi bi-currency-rupiah"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                        <h6>
+                            @php
+                                $total_harga_terjual = 0;
+                            @endphp
+                            @foreach ($barangs as $barang)
+                                @php
+                                    $total_per_barang = $barang->harga * $barang->terjual;
+                                    $total_harga_terjual += $total_per_barang;
+                                @endphp
+                            @endforeach
+                            {{ $total_harga_terjual }} Total Harga Terjual
+                        </h6>
+                      {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
                   </div>
@@ -71,7 +92,7 @@
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  
+
                 </div>
 
                 <div class="card-body">
@@ -82,8 +103,8 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                      <h6>{{ $users }} Akun Terdaftar</h6>
+                      {{-- <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span> --}}
 
                     </div>
                   </div>
@@ -179,7 +200,7 @@
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
 
-                
+
 
                 <div class="card-body">
                   <h5 class="card-title">tranksaksi </h5>
@@ -195,41 +216,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach ($transaksis as $transaksi)
+                        <tr>
+                            <th scope="row">{{ $i }}</th>
+                            <td>{{ $transaksi->user->name }}</td>
+                            <td>{{ $transaksi->barang->nama_barang }}</td>
+                            <td>Rp. {{ $transaksi->barang->harga }}</td>
+                            <td><span class="badge bg-success">{{ $transaksi->status }}</span></td>
+                          </tr>
+                          @php
+                              $i++;
+                          @endphp
+                        @endforeach
+
+
                     </tbody>
                   </table>
 
@@ -261,7 +264,6 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th scope="col">Preview</th>
                         <th scope="col">Product</th>
                         <th scope="col">Price</th>
                         <th scope="col">Sold</th>
@@ -269,41 +271,25 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach ($barang_laris as $laris)
+                        <tr>
+                          <td>{{ $laris->nama_barang }}</td>
+                          <td>{{ $laris->harga }}</td>
+                          <td class="fw-bold">{{ $laris->terjual }}</td>
+                          <td>
+                            @php
+                                $keuntungan = $laris->harga * $laris->terjual;
+                            @endphp
+                            {{ $keuntungan }}
+                          </td>
+                        </tr>
+                        @php
+                            $i++
+                        @endphp
+                        @endforeach
                     </tbody>
                   </table>
 

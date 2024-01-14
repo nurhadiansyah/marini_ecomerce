@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
+use App\Models\Transaksi;
+use App\Models\Barang;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +18,17 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin1.dashboard.dashboard');
+        $barangs = Barang::all();
+        $users = User::where('level', 0)->count();
+        $transaksis = Transaksi::get();
+        $barang_laris = Barang::orderBy('terjual', 'desc')->get();
+        // die(print_r($users));
+        return view('admin1.dashboard.dashboard',[
+            'barangs' => $barangs,
+            'users' => $users,
+            'transaksis' => $transaksis,
+            'barang_laris' => $barang_laris,
+        ]);
     }
 
     /**

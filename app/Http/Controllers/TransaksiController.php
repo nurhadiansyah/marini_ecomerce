@@ -107,7 +107,7 @@ class TransaksiController extends Controller
         ];
 
 
- 
+
         $validatedData = $request->validate($rules);
 
         if ($validatedData['status'] == "Selesai") {

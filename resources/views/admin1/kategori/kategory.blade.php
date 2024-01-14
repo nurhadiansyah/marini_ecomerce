@@ -6,11 +6,7 @@
     <div class="pagetitle">
       <h1>Data Kategori</h1>
       <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
-        </ol>
+        
       </nav>
     </div><!-- End Page Title -->
 
@@ -23,7 +19,7 @@
 
           <!-- Basic Modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-            Tambah Data Modal
+            Tambah Data
           </button>
           <div class="modal fade" id="basicModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -53,13 +49,13 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Submit</button>
                       <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                      
+
                     </div>
                   </form>
                   </div>
-                  
+
                 </div>
-                
+
               </div>
             </div>
           </div><!-- End Basic Modal-->
@@ -83,7 +79,7 @@
                         <div style="max-width:150px; overflow:hidden;">
                           <img src="{{ asset('storage/' . $data->gambar) }}" alt="" class="img-fluid">
                         </div>
-                         
+
                       </td>
                       <td style="text-align: center;">
                       <div class="row ">
@@ -93,18 +89,18 @@
                               @method('DELETE')
                               @csrf
                               <div class="btn-group">
-                                  <button class="btn btn-danger" type="submit" 
-                                  onclick="return confirm('Yakin ingin menghapus data?')" 
+                                  <button class="btn btn-danger" type="submit"
+                                  onclick="return confirm('Yakin ingin menghapus data?')"
                                   data-toggle="tooltip" title="Hapus">
                                   <i class="bi bi-trash"></i></button>
                               </div>
                           </form>
                         </div>
-                          
+
                           {{-- modal Edit --}}
                           <div class="col-md-2">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal{{ $data->id }}">
-                                      
+
                               <i class="bi bi-pencil-square"></i>
                               </button>
                               {{-- modal edit --}}
@@ -131,12 +127,12 @@
                                               <input type="hidden" name="oldImage" value="{{$data->gambar}}">
                                               @if($data->gambar)
                                                   <img src="{{asset('storage/'.$data->gambar)}}" class="img-preview img-fluid d-block">
-                                              @else 
+                                              @else
                                                 <img class="img-preview img-fluid">
                                               @endif
-                                              
+
                                               <input name="gambar" class="form-control col-md-12" type="file" id="gambar" onchange="previewImage()" value="{{ $data->gambar }}">
-                                              
+
                                               <span class="fs-12 fst-italic">*noted:upload gambar</span>
                                             </div>
                                             <div class="text-center">
@@ -145,19 +141,19 @@
                                             </div>
                                       </form>
                                       </div>
-                                      
+
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              
+
                               {{--modal end--}}
                           </div>
                         </div>
-                        
+
                       </td>
-                      
-                      
+
+
                   </tr>
                   {{-- Modal Edit --}}
 
@@ -173,7 +169,7 @@
       </div>
     </section>
 
-    
+
 
   </main><!-- End #main -->
 
