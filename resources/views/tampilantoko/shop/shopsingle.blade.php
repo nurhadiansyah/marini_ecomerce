@@ -9,7 +9,7 @@
                 <div class="card mb-3">
                     <img class="card-img img-fluid" src="{{ asset('storage/' . $shop->gambar) }}" alt="Card image cap" id="product-detail">
                 </div>
-               
+
             </div>
             <!-- col end -->
             <div class="col-lg-7 mt-5">
@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <h1 class="h2">{{$shop->nama_barang}}</h1>
                         <p class="h3 py-2">RP.{{$shop->harga}}</p>
-                        
+
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <h6>Kategori:</h6>
@@ -36,7 +36,9 @@
                             <div class="row">
                                 <input type="hidden" name="harga" value="{{$shop->harga}}">
                                 <input type="hidden" name="barang_id" value="{{$shop->id}}">
-                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                @if (auth()->user())
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                @endif
                                 <div class="col-auto">
                                     <ul class="list-inline pb-3">
                                         <li class="list-inline-item text-right">
@@ -50,12 +52,18 @@
                                 </div>
                             </div>
                             <div class="row pb-3">
-                                <div class="col d-grid">
+                                {{-- <div class="col d-grid">
                                     <button type="button" class="btn btn-success btn-lg" name="submit">Beli</button>
-                                </div>
+                                </div> --}}
+                                @if (auth()->user())
                                 <div class="col d-grid">
                                     <button type="submit" class="btn btn-success btn-lg" name="submit">Tambah ke keranjang</button>
                                 </div>
+                                @else
+                                <div class="col d-grid">
+                                    <button type="button" class="btn btn-danger btn-lg" name="submit">Login Terlebih Dahulu</button>
+                                </div>
+                                @endif
                             </div>
                         </form>
 

@@ -69,9 +69,9 @@
     <div class="container my-4">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Merek</h1>
+                <h1 class="h1">Brand</h1>
                 <p>
-                    Beberapa merek yang kami jual.
+                    Beberapa brand yang kami jual.
                 </p>
             </div>
             <div class="col-lg-9 m-auto tempaltemo-carousel">

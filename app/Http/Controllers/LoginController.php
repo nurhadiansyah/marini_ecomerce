@@ -58,10 +58,10 @@ class LoginController extends Controller
             }
             return redirect()->intended('/login');
         }
-        
-            
+
+
         return back()->with('loginError','login failed!!!');
-        
+
     }
 
     /**
@@ -111,11 +111,11 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
- 
+
         request()->session()->invalidate();
- 
+
         request()->session()->regenerateToken();
- 
-        return redirect('/');
+
+        return redirect('/Home');
     }
 }

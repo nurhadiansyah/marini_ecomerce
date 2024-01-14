@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Home;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('tampilantoko.home.home');
+        $barangs = DB::table('barangs')->orderBy('terjual', 'desc')->Limit(3)->get();
+        $kategoris = DB::table('kategoris')->get();
+        // die(print_r($barangs));
+
+        // return view('tampilantoko.home.home',compact('barangs','kategoris'));
+        return view('tampilantoko.home.home', [
+            'barangs' => $barangs,
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
