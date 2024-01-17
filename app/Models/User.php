@@ -23,7 +23,7 @@ class User extends Authenticatable
     //     'No_hp',
     //     'password',
     // ];
-    
+
 
     protected $guarded =['id'];
 
@@ -45,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'email';
+    }
 }

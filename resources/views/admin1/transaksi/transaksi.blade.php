@@ -14,7 +14,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
+              <h5 class="card-title">Rincian Data Semua Transaksi</h5>
               {{-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> --}}
 
               <!-- Table with stripped rows -->
@@ -24,6 +24,9 @@
                     <th scope="col">#</th>
                     <th scope="col">Nama Pemesan</th>
                     <th scope="col">Nama Barang</th>
+                    <th scope="col">Kode Pesanan</th>
+                    <th scope="col">Tanggal Pesan</th>
+                    <th scope="col">Tanggal Terima</th>
                     <th scope="col">Jumlah Barang</th>
                     <th scope="col">Total Bayar</th>
                     <th scope="col">Status</th>
@@ -38,13 +41,16 @@
                             <td>{{ $no ++}}</td>
                             <td>{{ $transaksi->user->name }}</td>
                             <td>{{ $transaksi->barang->nama_barang }}</td>
+                            <td>{{ $transaksi->kode_pesanan }}</td>
+                            <td>{{ $transaksi->tgl_pesan }}</td>
+                            <td>{{ $transaksi->tgl_terima }}</td>
                             <td>{{ $transaksi->jumlah }}</td>
-                            <td>{{ $transaksi->total }}</td>
+                            <td>@currency($transaksi->total)</td>
                             <td>{{ $transaksi->status }}</td>
-                            <td><button type="button" class="btn btn-block bg-gradient-warning mb-3" data-bs-toggle="modal"
+                            <td><button type="button" class="btn btn-primary bg-gradient-warning mb-3" data-bs-toggle="modal"
                                 data-bs-target="#modal-form{{ $transaksi->id }}">Update Status</button>
 
-                        </td>
+                            </td>
 
 
                         <div class="modal fade" id="modal-form{{ $transaksi->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-form"
@@ -62,11 +68,12 @@
                                                         @csrf
                                                         <select name="status" class="form-select" aria-label="Default select example">
                                                             <option selected>Silahkan Pilih Status</option>
-                                                            <option value="Panding">Panding</option>
+                                                            <option value="Pending">Pending</option>
                                                             <option value="Acc">Acc</option>
                                                             <option value="Packing">Packing</option>
                                                             <option value="Dikirim">Dikirim</option>
                                                             <option value="Selesai">Selesai</option>
+                                                            <option value="Batal">Batal</option>
                                                           </select>
                                                         <div class="text-center">
                                                             <button type="submit"

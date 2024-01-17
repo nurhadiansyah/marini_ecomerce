@@ -15,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $barangs = DB::table('barangs')->orderBy('terjual', 'desc')->Limit(3)->get();
+        // $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->orderBy('terjual', 'desc')->Limit(3)->get();
+        $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->orderByRaw("CAST(terjual as UNSIGNED) DESC")->Limit(3)->get();
         $kategoris = DB::table('kategoris')->get();
         // die(print_r($barangs));
 

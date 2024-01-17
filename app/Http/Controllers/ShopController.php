@@ -16,7 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $barangs = DB::table('barangs')->orderBy('terjual')->get();
+        $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->orderByRaw("CAST(terjual as UNSIGNED) DESC")->get();
         $kategoris = DB::table('kategoris')->get();
 
         return view('tampilantoko.shop.shop',compact('barangs','kategoris'));
@@ -25,7 +25,8 @@ class ShopController extends Controller
     public function shopkategori(Request $request)
     {
         $id = $request->id;
-        $barangs = DB::table('barangs')->orderBy('terjual')->where('kategori_id', $id)->get();
+        // $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->orderBy('terjual')->where('kategori_id', $id)->get();
+        $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->where('kategori_id', $id)->orderByRaw("CAST(terjual as UNSIGNED) DESC")->get();
         $kategoris = DB::table('kategoris')->get();
 
         // die(print_r($id));

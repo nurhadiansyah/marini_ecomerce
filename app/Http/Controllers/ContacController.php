@@ -16,7 +16,7 @@ class ContacController extends Controller
     public function index()
     {
         $transaksis = Transaksi::where('user_id', auth()->user()->id)->orderby('updated_at', 'DESC')->get();
-        return view('tampilantoko.contac.contac',[
+        return view('tampilantoko.riwayat.riwayat_transaksi',[
             'transaksis' => $transaksis
         ]);
 

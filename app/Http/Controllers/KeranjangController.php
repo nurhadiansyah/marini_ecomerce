@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keranjang;
+use App\Models\Transaksi;
 use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,12 +23,26 @@ class KeranjangController extends Controller
         $id = auth()->user()->id;
         $keranjangs = Keranjang::where('user_id', $id)->get();
 
+        $jumlah = Transaksi::count();
+        if ($jumlah == 0) {
+            $urut = 10000001;
+            $kode_pesanan = 'CW' . $urut;
+            // dd($no_registrasi);
+        } else {
+            $ambil = Transaksi::all()->last();
+            $urut = (int) substr($ambil->kode_pesanan, -8) + 1;
+            $kode_pesanan = 'CW' . $urut;
+            // dd($no_registrasi);
+
+        }
+
         // $keranjangs = Keranjang::find($id);
 
         // die(print_r($keranjangs));
 
         return view('tampilantoko.keranjang.keranjang',[
-            'keranjangs'=>$keranjangs ]);
+            'keranjangs'=>$keranjangs,
+            'kode_pesanan'=>$kode_pesanan, ]);
 
     }
 

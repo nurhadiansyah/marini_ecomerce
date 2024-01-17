@@ -4,10 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Pages / Register - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
   <!-- Favicons -->
   <link href="/admin/assets/img/favicon.png" rel="icon">
@@ -82,17 +87,16 @@
 
                     <div class="col-12">
                     <label for="tgl_lahir" class="form-label">Tanggal lahir</label>
-                        <div class="">
-                            <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control @error('tgl_lahir') is-invalid @enderror" required>
-                        </div>
+                            <input type="date" name="tgl_lahir" id="tgl_lahir" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31" class="form-control @error('tgl_lahir') is-invalid @enderror" required>
+
                     </div>
 
                     <div class="col-12">
-                      <label for="email" class="form-label">Username</label>
+                      <label for="email" class="form-label">Email</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" required>
-                        <div class="invalid-feedback">Masukkan username.</div>
+                        <div class="invalid-feedback">Masukkan Email</div>
                       </div>
                     </div>
 
@@ -138,6 +142,20 @@
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  {{-- <script type="text/javascript">
+    $(function () {
+        $('#tgl_lahir').datepicker({
+            format: "dd/mm/yyyy"
+        });
+    });
+</script> --}}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
 
   <!-- Vendor JS Files -->
   <script src="/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>

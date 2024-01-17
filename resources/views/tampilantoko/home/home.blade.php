@@ -93,21 +93,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="/Shop"><img src="/gambar/pakan.jpeg" class="rounded-circle img-fluid border"></a>
-            <h5 class="text-center mt-3 mb-3">Pakan</h5>
-            <p class="text-center"><a href="/Shop" class="btn btn-success">Go Shop</a></p>
-        </div>
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="/Shop"><img src="/gambar/Obat.jpg" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Obat-obatan</h2>
-            <p class="text-center"><a href="/Shop" class="btn btn-success">Go Shop</a></p>
-        </div>
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="/Shop"><img src="/gambar/peralatan.jpg" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Kelengkapan Ternak</h2>
-            <p class="text-center"><a href="/Shop" class="btn btn-success">Go Shop</a></p>
-        </div>
+        @foreach ($kategoris as $kategori)
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/Shop"><img src="{{ asset('storage/' . $kategori->gambar) }}" class="rounded-circle img-fluid border"></a>
+                <h5 class="text-center mt-3 mb-3">{{ $kategori->nama_kat }}</h5>
+                <p class="text-center"><a href="/ShopKategori/{{ $kategori->id }}" class="btn btn-success">Go Shop</a></p>
+            </div>
+
+        @endforeach
     </div>
 </section>
 <!-- End Categories of The Month -->
@@ -170,7 +163,7 @@
                 </div>
 
             </div>
-            
+
         </div>
     </div>
 </section>
