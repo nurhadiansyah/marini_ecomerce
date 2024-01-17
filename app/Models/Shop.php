@@ -11,5 +11,9 @@ class Shop extends Model
     protected $table = 'barangs';
     protected $guarded =['id'];
 
-  
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
 }

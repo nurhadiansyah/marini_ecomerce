@@ -73,9 +73,12 @@ https://templatemo.com/tm-559-zay-shop
                         <li class="nav-item">
                             <a class="nav-link" href="/Shop">Shop</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="/Contac">Contact</a>
-                        </li> --}}
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/riwayat_transaksi">Transaksi</a>
+                        </li>
+                        @endauth
+
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
@@ -99,11 +102,11 @@ https://templatemo.com/tm-559-zay-shop
                         </a>
                         <ul class="dropdown-menu">
                             @auth
-                                <li><a class="dropdown-item" href="/profil">Profil</a></li>
+                                <li><a class="dropdown-item" href="/user/{{ auth()->user()->email }}">Profil</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             @else
                                 <li><a class="dropdown-item" href="/login">Login</a></li>
-                                <li><a class="dropdown-item" href="/register">Register</a></li>
+                                <li><a class="dropdown-item" href="/registrasi">Register</a></li>
                             @endauth
                         </ul>
                     </div>

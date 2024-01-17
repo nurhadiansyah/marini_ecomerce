@@ -4,11 +4,16 @@
     <!-- Start Content -->
     <div class="container py-5">
         <div class="container">
+
             <form action="/transaksi" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <input type="hidden" name="status" value="Pending">
+                <input type="hidden" name="kode_pesanan" value="{{ $kode_pesanan }}">
+                <input type="hidden" name="tgl_pesan" value="{{ date('d / m / Y') }}">
+                <input type="hidden" name="tgl_terima" value="Pending">
 
+                {{ date('d / m / Y') }} // {{ $kode_pesanan }}
                 @php
                     $i = 1;
                 @endphp

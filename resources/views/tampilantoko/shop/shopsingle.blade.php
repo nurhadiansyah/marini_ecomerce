@@ -16,14 +16,23 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="h2">{{$shop->nama_barang}}</h1>
-                        <p class="h3 py-2">RP.{{$shop->harga}}</p>
+                        <p class="h3 py-2">@currency($shop->harga)</p>
 
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <h6>Kategori:</h6>
                             </li>
                             <li class="list-inline-item">
-                                <p class="text-muted"><strong>{{$shop->kategori_id}}</strong></p>
+                                <p class="text-muted"><strong>{{$shop->kategori->nama_kat}}</strong></p>
+                            </li>
+                        </ul>
+
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Jumlah Barang Tersedia:</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="text-muted"><strong>{{$shop->kuantitas}}</strong></p>
                             </li>
                         </ul>
 
@@ -55,7 +64,7 @@
                                 {{-- <div class="col d-grid">
                                     <button type="button" class="btn btn-success btn-lg" name="submit">Beli</button>
                                 </div> --}}
-                                @if (auth()->user())
+                                @auth
                                 <div class="col d-grid">
                                     <button type="submit" class="btn btn-success btn-lg" name="submit">Tambah ke keranjang</button>
                                 </div>
@@ -63,7 +72,7 @@
                                 <div class="col d-grid">
                                     <button type="button" class="btn btn-danger btn-lg" name="submit">Login Terlebih Dahulu</button>
                                 </div>
-                                @endif
+                                @endauth
                             </div>
                         </form>
 

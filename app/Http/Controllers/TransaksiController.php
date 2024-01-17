@@ -44,19 +44,37 @@ class TransaksiController extends Controller
         // $store = '';
         $user_id = $request['user_id'];
         $status = $request['status'];
+        $store['kode_pesanan'] = $request['kode_pesanan'];
+        $store['tgl_pesan'] = $request['tgl_pesan'];
+        $store['tgl_terima'] = $request['tgl_terima'];
         $user = User::where('id', $user_id)->first();
         $keranjang_id = $request->input('keranjang_id');
         foreach($keranjang_id as $id){
             $keranjangs = Keranjang::where('id', $id)->first();
             $jumlah = $keranjangs->jumlah;
             $total = $keranjangs->total;
+
+
             $barang_id = $keranjangs->barang_id;
+
 
             $store['jumlah'] = $jumlah;
             $store['total'] = $total;
             $store['status'] = $status;
             $store['user_id'] = $user_id;
             $store['barang_id'] = $barang_id;
+
+            // update jumlah stok
+            $barangs = Barang::where('id', $barang_id)->first();
+            $kuantitas_barang = $barangs->kuantitas;
+            $kuantitas_barang_terbaru = $kuantitas_barang - $jumlah;
+
+            // die(print_r($jumlah));
+            Barang::where('id', $barang_id)
+            ->update([
+                'kuantitas' => $kuantitas_barang_terbaru
+            ]);
+
 
             Transaksi::create($store);
             Keranjang::destroy($id);
@@ -112,18 +130,41 @@ class TransaksiController extends Controller
 
         if ($validatedData['status'] == "Selesai") {
             $barang_id = $transaksi->barang->id;
+            $kuantitas = $transaksi->barang->kuantitas;
             $terjual_sekarang = $transaksi->barang->terjual;
             $terjual_terbaru = $transaksi->jumlah;
 
             $terjual_total = $terjual_sekarang + $terjual_terbaru;
 
             Barang::where('id', $barang_id)
-            ->update(['terjual' => $terjual_total]);
+            ->update([
+                'terjual' => $terjual_total
+            ]);
+
+            $validatedData['tgl_terima'] = date('d / m / Y');
+        }
+
+        if ($validatedData['status'] == "Batal") {
+            $barang_id = $transaksi->barang->id;
+            $kuantitas = $transaksi->barang->kuantitas;
+            $terjual_terbaru = $transaksi->jumlah;
+
+            $kuantitas_updated = $kuantitas + $terjual_terbaru;
+
+            Barang::where('id', $barang_id)
+            ->update([
+                'kuantitas' => $kuantitas_updated
+            ]);
         }
         Transaksi::where('id', $transaksi->id)
             ->update($validatedData);
 
-        return redirect('/transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');
+        if (auth()->user()->id == 1) {
+            return redirect('/transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');
+        }else {
+            return redirect('/riwayat_transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');
+
+        }
     }
 
     /**

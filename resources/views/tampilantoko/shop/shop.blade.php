@@ -58,7 +58,7 @@
 
                                 <a href="/shop/{{$barang->id}}" class="h3 text-decoration-none">{{ $barang->nama_barang }}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li>{{ $barang->kategori_id}}</li>
+                                    <li>Stok = {{ $barang->kuantitas}}</li>
                                     <li class="pt-2">
                                         <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                         <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -76,7 +76,7 @@
                                         <i class="text-muted fa fa-star"></i>
                                     </li>
                                 </ul> --}}
-                                <p class="text-center mb-0">RP.{{ $barang->harga }}</p>
+                                <p class="text-center mb-0">@currency($barang->harga)</p>
                             </div>
                         </div>
                     </div>

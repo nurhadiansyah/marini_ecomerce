@@ -35,7 +35,7 @@ Route::resource('/Home', HomeController::class);
 Route::resource('/About', TentangController::class);
 Route::resource('/Shop', ShopController::class);
 Route::get('/ShopKategori/{id}', [ShopController::class, 'shopkategori']);
-Route::resource('/profil', ContacController::class);
+Route::resource('/riwayat_transaksi', ContacController::class);
 Route::resource('/keranjang', KeranjangController::class);
 
 

@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">penjualan </h5>
+                  <h5 class="card-title">Penjualan </h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -74,7 +74,7 @@
                                     $total_harga_terjual += $total_per_barang;
                                 @endphp
                             @endforeach
-                            {{ $total_harga_terjual }} Total Harga Terjual
+                            @currency($total_harga_terjual) Total Harga Terjual
                         </h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">akun terdaftar</h5>
+                  <h5 class="card-title">Akun Terdaftar</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -203,7 +203,7 @@
 
 
                 <div class="card-body">
-                  <h5 class="card-title">tranksaksi </h5>
+                  <h5 class="card-title">Tranksaksi </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
@@ -224,7 +224,7 @@
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $transaksi->user->name }}</td>
                             <td>{{ $transaksi->barang->nama_barang }}</td>
-                            <td>Rp. {{ $transaksi->barang->harga }}</td>
+                            <td>@currency($transaksi->barang->harga)</td>
                             <td><span class="badge bg-success">{{ $transaksi->status }}</span></td>
                           </tr>
                           @php
@@ -264,10 +264,10 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
+                        <th scope="col" class="">Product</th>
+                        <th scope="col" class="">Price</th>
+                        <th scope="col" class="text-center">Sold</th>
+                        <th scope="col" class="">Revenue</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -276,14 +276,14 @@
                         @endphp
                         @foreach ($barang_laris as $laris)
                         <tr>
-                          <td>{{ $laris->nama_barang }}</td>
-                          <td>{{ $laris->harga }}</td>
-                          <td class="fw-bold">{{ $laris->terjual }}</td>
-                          <td>
+                          <td class="">{{ $laris->nama_barang }}</td>
+                          <td class="">@currency($laris->harga)</td>
+                          <td class="fw-bold text-center">{{ $laris->terjual }}</td>
+                          <td class="">
                             @php
                                 $keuntungan = $laris->harga * $laris->terjual;
                             @endphp
-                            {{ $keuntungan }}
+                            @currency($keuntungan)
                           </td>
                         </tr>
                         @php
