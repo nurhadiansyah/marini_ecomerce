@@ -25,7 +25,7 @@
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Tambah kategory</h5>
+                  <h5 class="modal-title">Tambah kategori</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -34,12 +34,12 @@
                       @csrf
                     <div class="row">
                       <div class="col-md-12">
-                      <label for="nama_kat" class="form-label">Nama kategory</label>
+                      <label for="nama_kat" class="form-label">Nama Kategori</label>
                       <input name="nama_kat" type="text" class="form-control" id="nama_kat">
                     </div>
                   </div>
                     <div class="row md-12">
-                      <label for="gambar" class="form-label">Upload foto</label>
+                      <label for="gambar" class="form-label">Upload Foto</label>
                       <img class="img-preview img-fluid">
                       <div class="col-md-12">
                         <input name="gambar" class="form-control" type="file" id="gambar" onchange="previewImage()">
@@ -118,12 +118,12 @@
                                           @csrf
                                             <div class="row">
                                               <div class="col-md-12">
-                                              <label for="nama_kat" class="form-label">Nama kategory</label>
+                                              <label for="nama_kat" class="form-label">Nama Kategori</label>
                                               <input name="nama_kat" type="text" class="form-control" id="nama_kat" value="{{ $data->nama_kat }}">
                                               </div>
                                             </div>
                                             <div class="row md-12">
-                                              <label for="gambar" class="form-label">Upload foto</label>
+                                              <label for="gambar" class="form-label">Upload Foto</label>
                                               <input type="hidden" name="oldImage" value="{{$data->gambar}}">
                                               @if($data->gambar)
                                                   <img src="{{asset('storage/'.$data->gambar)}}" class="img-preview img-fluid d-block">

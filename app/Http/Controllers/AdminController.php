@@ -22,11 +22,11 @@ class AdminController extends Controller
         $users = User::where('level', 0)->count();
         $transaksis = Transaksi::get();
         // $barang_laris = Barang::orderBy('terjual', 'desc')->get();
-        $barang_laris = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->get();
+        $barang_laris = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->limit(10)->get();
         // $barang_laris = Barang::orderBy(CAST('terjual', 'AS', 'UNSIGNED'), 'terjual')->get();
 
         // CAST(terjual AS UNSIGNED) DESC, terjual
-        // die(print_r($users));
+        // die(print_r($transaksis[0]->barang->nama_barang));
         return view('admin1.dashboard.dashboard',[
             'barangs' => $barangs,
             'users' => $users,

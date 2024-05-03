@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Cahaya Marini| Home</title>
+    <title>Cahaya Wage | Home</title>
     <meta charset="utf-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,7 +53,7 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/Home">
                 Cahaya Wage
             </a>
 
@@ -103,10 +103,10 @@ https://templatemo.com/tm-559-zay-shop
                         <ul class="dropdown-menu">
                             @auth
                                 <li><a class="dropdown-item" href="/user/{{ auth()->user()->email }}">Profil</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                <li><a class="dropdown-item" href="/logout">Keluar</a></li>
                             @else
-                                <li><a class="dropdown-item" href="/login">Login</a></li>
-                                <li><a class="dropdown-item" href="/registrasi">Register</a></li>
+                                <li><a class="dropdown-item" href="/login">Masuk</a></li>
+                                <li><a class="dropdown-item" href="/registrasi">Registrasi</a></li>
                             @endauth
                         </ul>
                     </div>
@@ -148,47 +148,45 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container">
             <div class="row">
 
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">cahaya marini</h2>
+                <div class="col-md-6 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Cahaya Wage</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            123 Consectetur at ligula 10660
+                            Jl. A. Paggaru, No. 16, Wajo, Sengkang, Teddaopu, Kec. Tempe, Kabupaten Wajo, 90912
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                            <a class="text-decoration-none" href="tel:0851-7222-2280">0851-7222-2280</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:cahayawage@gmail.com">cahayawage@gmail.com</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                    <!-- <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <!-- <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
                         <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
                         <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
                         <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
                         <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
                         <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li> -->
-                    </ul>
+                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    </ul> -->
                 </div>
 
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                <!-- <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Informasi</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="/Home">Home</a></li>
+                        <li><a class="text-decoration-none" href="/About">About</a></li>
+                        <li><a class="text-decoration-none" href="/Shop">Shop</a></li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
 
@@ -227,8 +225,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name
-                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                            Copyright &copy; 2023 CW
                         </p>
                     </div>
                 </div>

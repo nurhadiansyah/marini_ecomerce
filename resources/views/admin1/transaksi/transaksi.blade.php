@@ -4,7 +4,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tranksaksi</h1>
+      <h1>Data Transaksi</h1>
 
     </div><!-- End Page Title -->
 
@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ $no ++}}</td>
                             <td>{{ $transaksi->user->name }}</td>
-                            <td>{{ $transaksi->barang->nama_barang }}</td>
+                            <td>{{ $transaksi->barang?->nama_barang }}</td>
                             <td>{{ $transaksi->kode_pesanan }}</td>
                             <td>{{ $transaksi->tgl_pesan }}</td>
                             <td>{{ $transaksi->tgl_terima }}</td>
@@ -75,6 +75,7 @@
                                                             <option value="Selesai">Selesai</option>
                                                             <option value="Batal">Batal</option>
                                                           </select>
+                                                          <input type="text" name="keterangan" class="form-control" placeholder="Tambahkan Keterangan...">
                                                         <div class="text-center">
                                                             <button type="submit"
                                                                 class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Update</button>

@@ -13,7 +13,7 @@
                 <input type="hidden" name="tgl_pesan" value="{{ date('d / m / Y') }}">
                 <input type="hidden" name="tgl_terima" value="Pending">
 
-                {{ date('d / m / Y') }} // {{ $kode_pesanan }}
+                <!-- {{ date('d / m / Y') }} // {{ $kode_pesanan }} -->
                 @php
                     $i = 1;
                 @endphp

@@ -263,7 +263,7 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/kategori">
-              <i class="bi bi-circle"></i><span>Kategory</span>
+              <i class="bi bi-circle"></i><span>Kategori</span>
             </a>
           </li>
           <li>
@@ -302,7 +302,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>
+      &copy; Copyright <strong><span>CW</span></strong>
     </div>
     <div class="credits">
 

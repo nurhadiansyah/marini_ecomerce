@@ -14,7 +14,7 @@
         <div class="row py-5">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Status Tranksaksi</h5>
+                    <h5 class="card-title">Status Transaksi</h5>
                     {{-- <p>Add <code>.table-borderless</code> for a table without borders.</p> --}}
                     <!-- Active Table -->
                     <table class="table table-borderless">
@@ -28,6 +28,7 @@
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Keterangan</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -38,13 +39,14 @@
                             @foreach ($transaksis as $transaksi)
                                 <tr>
                                     <th scope="row">{{ $i++ }}</th>
-                                    <td>{{ $transaksi->barang->nama_barang }}</td>
+                                    <td>{{ $transaksi->barang?->nama_barang }}</td>
                                     <td>{{ $transaksi->kode_pesanan }}</td>
                                     <td>{{ $transaksi->tgl_pesan }}</td>
                                     <td>{{ $transaksi->tgl_terima }}</td>
                                     <td>{{ $transaksi->jumlah }}</td>
-                                    <td>{{ $transaksi->total }}</td>
+                                    <td>@currency($transaksi->total)</td>
                                     <td>{{ $transaksi->status }}</td>
+                                    <td>{{ $transaksi->keterangan }}</td>
                                     <td>
                                         @if ($transaksi->status == "Selesai")
                                             Pesanan Selesai

@@ -37,7 +37,7 @@
                         </ul>
 
                         <h6>Deskripsi</h6>
-                        <p>ini adalah sis deskripsi</p>
+                        <p>ini adalah isi deskripsi</p>
 
                         <form action="/keranjang" method="POST">
                             @csrf

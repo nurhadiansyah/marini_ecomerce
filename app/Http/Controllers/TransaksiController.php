@@ -47,12 +47,17 @@ class TransaksiController extends Controller
         $store['kode_pesanan'] = $request['kode_pesanan'];
         $store['tgl_pesan'] = $request['tgl_pesan'];
         $store['tgl_terima'] = $request['tgl_terima'];
+        
         $user = User::where('id', $user_id)->first();
         $keranjang_id = $request->input('keranjang_id');
+        $tot_bayar = 0;
+        $rincian = "";
         foreach($keranjang_id as $id){
             $keranjangs = Keranjang::where('id', $id)->first();
             $jumlah = $keranjangs->jumlah;
             $total = $keranjangs->total;
+
+            $tot_bayar += $total;
 
 
             $barang_id = $keranjangs->barang_id;
@@ -68,6 +73,9 @@ class TransaksiController extends Controller
             $barangs = Barang::where('id', $barang_id)->first();
             $kuantitas_barang = $barangs->kuantitas;
             $kuantitas_barang_terbaru = $kuantitas_barang - $jumlah;
+
+            // ambil nama barang
+            $rincian .= $store['jumlah'] .' '. $barangs->nama_barang . ', ';
 
             // die(print_r($jumlah));
             Barang::where('id', $barang_id)
@@ -86,7 +94,8 @@ class TransaksiController extends Controller
             // print_r('Total = '. $store['total'] . '<br>');
         }
 
-        return redirect("https://wa.me/6285172222280?text=Hai!%20Selamat%20datang%20di%20Toko%20Cahaya%20Wage.%20Terima%20kasih%20telah%20memilih%20produk%20kami.%20Untuk%20memudahkan%20pemesanan%2C%20silahkan%20isi%20formulir%20berikut%20ini%20%3A%0ANama%20Lengkap%20%3A%20{$user->name}%0AEmail%20%3A%20{$user->email}%0AAlamat%20Lengkap%20(disertai%20kode%20POS)%20%3A%0ANo.%20HP%20%3A%20{$user->No_hp}%0AJika%20sudah%2C%20kami%20akan%20menghitung%20jumlah%20total%20harga%20yang%20harus%20dibayar.%C2%A0Terima%C2%A0kasih%5E%5E");
+        // return redirect("https://wa.me/6285172222280?text=Hai!%20Selamat%20datang%20di%20Toko%20Cahaya%20Wage.%20Terima%20kasih%20telah%20memilih%20produk%20kami.%20Untuk%20memudahkan%20pemesanan%2C%20silahkan%20isi%20formulir%20berikut%20ini%20%3A%0ANama%20Lengkap%20%3A%20{$user->name}%0AEmail%20%3A%20{$user->email}%0AAlamat%20Lengkap%20(disertai%20kode%20POS)%20%3A%0ANo.%20HP%20%3A%20{$user->No_hp}%0AJika%20sudah%2C%20kami%20akan%20menghitung%20jumlah%20total%20harga%20yang%20harus%20dibayar.%C2%A0Terima%C2%A0kasih%5E%5E");
+        return redirect("https://wa.me/6285172222280?text=Hai!%20Selamat%20datang%20di%20Toko%20Cahaya%20Wage.%0ATerima%20kasih%20telah%20memilih%20produk%20kami.%0AUntuk%20memudahkan%20pemesanan%2C%20silahkan%20isi%20formulir%20berikut%20ini%20%3A%0A%0A%0A%0ANama%20Lengkap%20%3A%20{$user->name}%0AEmail%20%3A%20{$user->email}%0AKode%20Pesanan%20%3A%20{$store['kode_pesanan']}%0ARincian%20Pesanan%20%3A%20{$rincian}%0ATanggal%20Pesanan%20%3A%20{$store['tgl_pesan']}%0AAlamat%20Lengkap%20(disertai%20kode%20POS)%20%3A%20%0ANo.%20HP%20%3A%20{$user->No_hp}%0ATotal%20Bayar%20%3A%20{$tot_bayar}%0A%0A%0A%0ATerima%20kasih%5E%5E");
     }
 
     /**
@@ -120,14 +129,14 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
+        
         $rules = [
             'status' => 'required',
+            'keterangan' => '',
         ];
 
-
-
         $validatedData = $request->validate($rules);
-
+        
         if ($validatedData['status'] == "Selesai") {
             $barang_id = $transaksi->barang->id;
             $kuantitas = $transaksi->barang->kuantitas;
@@ -143,7 +152,7 @@ class TransaksiController extends Controller
 
             $validatedData['tgl_terima'] = date('d / m / Y');
         }
-
+        
         if ($validatedData['status'] == "Batal") {
             $barang_id = $transaksi->barang->id;
             $kuantitas = $transaksi->barang->kuantitas;
@@ -156,10 +165,13 @@ class TransaksiController extends Controller
                 'kuantitas' => $kuantitas_updated
             ]);
         }
+        // die(request('status'));
+
         Transaksi::where('id', $transaksi->id)
             ->update($validatedData);
+        
 
-        if (auth()->user()->id == 1) {
+        if (auth()->user()->level == 1) {
             return redirect('/transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');
         }else {
             return redirect('/riwayat_transaksi') -> with('success' , 'New Transaksi Hasbeen Updated!');

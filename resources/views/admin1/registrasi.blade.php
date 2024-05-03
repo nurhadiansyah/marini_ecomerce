@@ -6,9 +6,24 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Pages / Register - NiceAdmin Bootstrap Template</title>
+  <title>Pages / Register - Cahaya Wage</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <link
+      href=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+      rel="stylesheet"
+    />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">
+    </script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -56,7 +71,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <span class="d-none d-lg-block">Cahaya Wage</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -65,8 +80,8 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Buat Akun Baru!</h5>
+                    <p class="text-center small">Masukkan detail data pribadi untuk membuat akun baru</p>
                   </div>
 
                   <form class="row g-3 needs-validation" action="/registrasi" method="POST">
@@ -86,8 +101,8 @@
                     </div>
 
                     <div class="col-12">
-                    <label for="tgl_lahir" class="form-label">Tanggal lahir</label>
-                            <input type="date" name="tgl_lahir" id="tgl_lahir" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31" class="form-control @error('tgl_lahir') is-invalid @enderror" required>
+                    <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+                            <input type="text" name="tgl_lahir" id="tgl_lahir" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31" class="date form-control @error('tgl_lahir') is-invalid @enderror" required>
 
                     </div>
 
@@ -101,23 +116,24 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="password" class="form-label">Password</label>
+                      <label for="password" class="form-label">Kata Sandi</label>
                       <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <div class="invalid-feedback">Masukkan Kata Sandi Anda!</div>
                     </div>
 
-                    {{-- <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
-                      </div>
-                    </div> --}}
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      <label for="password" class="form-label">Ulang Kata Sandi</label>
+                      <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" required>
+                      <div class="invalid-feedback">Kata Sandi Salah</div>
+                    </div>
+
+
+                    
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">Buat Akun</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="/login">Log in</a></p>
+                      <p class="small mb-0">Sudah punya akun? <a href="/login">Masuk</a></p>
                     </div>
                   </form>
 
@@ -144,18 +160,17 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
-  {{-- <script type="text/javascript">
-    $(function () {
-        $('#tgl_lahir').datepicker({
-            format: "dd/mm/yyyy"
-        });
-    });
-</script> --}}
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+        <script type="text/javascript">
+    $(".date").datepicker({
+      format: "dd-mm-yyyy",
+    });
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>

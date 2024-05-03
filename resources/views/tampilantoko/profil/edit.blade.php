@@ -1,6 +1,20 @@
 @extends('tampilantoko/layout/index')
 
 @section('content')
+<link
+      href=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+      rel="stylesheet"
+    />
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">
+    </script>
     <!-- Start Content Page -->
     <div class="container-fluid bg-light py-5">
         <div class="col-md-6 m-auto text-center">
@@ -14,7 +28,7 @@
         <div class="row py-5">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Pastikan untuk mengisi Data dengan Benar !</h5>
+                    <h5 class="card-title">Pastikan untuk Mengisi Data dengan Benar !</h5>
                     {{-- <p>Add <code>.table-borderless</code> for a table without borders.</p> --}}
 
                     <div class="row">
@@ -79,8 +93,8 @@
                                         <div class="form-group">
                                             <label for="example-2" class="col-md-12">Tanggal Lahir</label>
                                             <div class="col-md-12">
-                                                <input type="date" name="tgl_lahir" value="{{ old('tgl_lahir', $user->tgl_lahir) }}"
-                                                    class="form-control form-control-line @error('tgl_lahir') is-invalid @enderror"
+                                                <input type="text" name="tgl_lahir" value="{{ old('tgl_lahir', $user->tgl_lahir) }}"
+                                                    class="date form-control form-control-line @error('tgl_lahir') is-invalid @enderror"
                                                     id="example-2">
                                                     @error('tgl_lahir')
                                                         <div class="invalid-feedback">
@@ -115,11 +129,11 @@
 
                                         <hr>
                                         <div class="text-muted">
-                                            Jika tidak ingin mengganti password, silahkan lewati <span class="text-warning">Inputan Password Baru</span> dibawah.
+                                            Jika tidak ingin mengubah kata sandi, silahkan lewati <span class="text-warning">Inputan Kata Sandi Baru</span> di bawah.
                                         </div>
                                         <input type="hidden" name="password" value="{{ $user->password }}">
                                         <div class="form-group">
-                                            <label class="col-md-12">Password Baru</label>
+                                            <label class="col-md-12">Kata Sandi Baru</label>
                                             <div class="col-md-12">
                                                 <input type="password" name="passwordBaru"
                                                     class="form-control form-control-line @error('passwordBaru') is-invalid @enderror">
@@ -131,7 +145,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-12">Ulangi Password Baru</label>
+                                            <label class="col-md-12">Ulangi Kata Sandi Baru</label>
                                             <div class="col-md-12">
                                                 <input type="password" name="konfirPasswordBaru"
                                                     class="form-control form-control-line @error('konfirPasswordBaru') is-invalid @enderror">
@@ -164,4 +178,10 @@
         </div>
     </div>
     <!-- End Contact -->
+
+    <script type="text/javascript">
+    $(".date").datepicker({
+      format: "dd-mm-yyyy",
+    });
+  </script>
 @endsection
