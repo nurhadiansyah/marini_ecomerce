@@ -16,9 +16,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        
-        
-        
+
+
+
         $barangs = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->get();
         $kategoris = DB::table('kategoris')->get();
 
@@ -26,9 +26,19 @@ class ShopController extends Controller
             // $barangs->where('nama_barang','like','%'. request('search'). '%');
             $barangs = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->where('nama_barang','like','%'. request('search'). '%')->get();
         }
+        // if ($barangs->isEmpty()) {
+        //     $uji = "Habis";
+        // }else {
+        //     $uji = "Ada";
+        // }
+        // die(print_r($uji));
 
-        
-        return view('tampilantoko.shop.shop',compact('barangs','kategoris'));
+
+        // return view('tampilantoko.shop.shop',compact('barangs','kategoris'));
+        return view('tampilantoko.shop.shop',[
+            'barangs' => $barangs,
+            'kategoris' => $kategoris,
+        ]);
     }
 
     public function shopkategori(Request $request)
@@ -37,12 +47,14 @@ class ShopController extends Controller
         // $barangs = DB::table('barangs')->where('kuantitas', '>' , 0)->orderBy('terjual')->where('kategori_id', $id)->get();
         $barangs = DB::table('barangs')->where('kategori_id', $id)->orderByRaw("CAST(terjual as UNSIGNED) DESC")->get();
         $kategoris = DB::table('kategoris')->get();
+        $kateg = DB::table('kategoris')->where('id', $id)->first();
 
         // die(print_r($id));
 
         return view('tampilantoko.shop.shop',[
             'barangs' => $barangs,
             'kategoris' => $kategoris,
+            'kateg' => $kateg,
         ]);
     }
 

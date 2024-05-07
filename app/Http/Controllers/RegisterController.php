@@ -43,7 +43,7 @@ class RegisterController extends Controller
             'password'=>'required|confirmed',
             'level'=>'required',
             'tgl_lahir'=>'required'
-            
+
             ]);
 
             $validatedData['password'] = bcrypt($validatedData['password']);

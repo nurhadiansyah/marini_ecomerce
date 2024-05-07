@@ -74,9 +74,35 @@ class KeranjangController extends Controller
 
         ]);
         $total= $request->harga * $request->jumlah;
-        $validatedData['total']=$total;
 
-        Keranjang::create($validatedData);
+        $adas = DB::table('keranjangs')->where('user_id', '=' , $validatedData['user_id'])->where('barang_id', '=' , $validatedData['barang_id'])->get();
+
+        if ($adas->isEmpty()) {
+            $validatedData['total']=$total;
+
+            Keranjang::create($validatedData);
+
+        }else {
+            foreach ($adas as $ada) {
+                $id = $ada->id;
+                $jumlah = $ada->jumlah;
+                $totalBaru = $ada->total;
+            }
+
+            $jumlahSekarang = $validatedData['jumlah'] + $jumlah;
+            $totalSekarang = $totalBaru + $total;
+
+            Keranjang::where('id', $id)
+            ->update([
+                'jumlah' => $jumlahSekarang,
+                'total' => $totalSekarang,
+            ]);
+        }
+
+        // die(print_r($uji));
+
+
+
         return redirect('/keranjang');
     }
 
