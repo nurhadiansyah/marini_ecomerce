@@ -100,4 +100,79 @@ class AdminController extends Controller
     {
         //
     }
+
+
+    public function hierarchicalClustering()
+    {
+        $users = User::where('level', 0)->count();
+        $transaksis = Transaksi::get();
+        $barang_laris = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->limit(10)->get();
+
+
+        // Ambil semua data yang akan di-cluster
+        $dataPoints = Barang::all();
+
+        // Inisialisasi masing-masing data sebagai cluster awal
+        $clusters = [];
+        foreach ($dataPoints as $dataPoint) {
+            $clusters[] = [$dataPoint];
+        }
+
+        // Mulai proses Hierarchical Clustering
+        while (count($clusters) > 1) {
+            // Hitung jarak antara setiap pasangan cluster
+            $closestClusters = $this->findClosestClusters($clusters);
+
+            // Gabungkan dua cluster terdekat menjadi satu cluster baru
+            list($cluster1Index, $cluster2Index) = $closestClusters;
+            $newCluster = array_merge($clusters[$cluster1Index], $clusters[$cluster2Index]);
+            unset($clusters[$cluster1Index], $clusters[$cluster2Index]);
+            $clusters[] = $newCluster;
+        }
+
+        // Hasilnya adalah satu cluster tunggal yang berisi semua data
+        return view('admin1.dashboard.dashboard',[
+            'barangs' => $clusters[0],
+            'users' => $users,
+            'transaksis' => $transaksis,
+            'barang_laris' => $barang_laris,
+        ]);
+    }
+
+    // Fungsi untuk mencari dua cluster terdekat
+    private function findClosestClusters($clusters)
+    {
+        $minDistance = INF;
+        $closestClusters = [0, 1];
+
+        // Hitung jarak antara setiap pasangan cluster
+        for ($i = 0; $i < count($clusters); $i++) {
+            for ($j = $i + 1; $j < count($clusters); $j++) {
+                $distance = $this->calculateDistance($clusters[$i], $clusters[$j]);
+                if ($distance < $minDistance) {
+                    $minDistance = $distance;
+                    $closestClusters = [$i, $j];
+                }
+            }
+        }
+
+        return $closestClusters;
+    }
+
+    // Fungsi untuk menghitung jarak antara dua cluster menggunakan single linkage
+    private function calculateDistance($cluster1, $cluster2)
+    {
+        $minDistance = INF;
+
+        foreach ($cluster1 as $point1) {
+            foreach ($cluster2 as $point2) {
+                $distance = $this->distanceFunction($point1, $point2); // Implementasikan fungsi jarak sesuai kebutuhan Anda
+                if ($distance < $minDistance) {
+                    $minDistance = $distance;
+                }
+            }
+        }
+
+        return $minDistance;
+    }
 }
