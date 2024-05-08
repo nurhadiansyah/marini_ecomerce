@@ -106,7 +106,6 @@ class AdminController extends Controller
     {
         $users = User::where('level', 0)->count();
         $transaksis = Transaksi::get();
-        $barang_laris = DB::table('barangs')->orderByRaw("CAST(terjual as UNSIGNED) DESC")->limit(10)->get();
 
 
         // Ambil semua data yang akan di-cluster
@@ -135,7 +134,6 @@ class AdminController extends Controller
             'barangs' => $clusters[0],
             'users' => $users,
             'transaksis' => $transaksis,
-            'barang_laris' => $barang_laris,
         ]);
     }
 

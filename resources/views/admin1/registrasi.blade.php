@@ -91,19 +91,25 @@
                     <div class="col-12">
                       <label for="name" class="form-label">Nama</label>
                       <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" required>
-                      <div class="invalid-feedback">Masukkan nama anda</div>
+                      @error('name')
+                        <div class="invalid-feedback">Masukkan nama anda</div>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                       <label for="No_hp" class="form-label">No Hp</label>
                       <input type="text" name="No_hp" class="form-control @error('No_hp') is-invalid @enderror" id="No_hp" value="{{ old('No_hp') }}" required>
-                      <div class="invalid-feedback">Masukkan Nomer HP</div>
+                      @error('No_hp')
+                        <div class="invalid-feedback">Masukkan Nomer HP</div>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                     <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
                             <input type="text" name="tgl_lahir" id="tgl_lahir" placeholder="dd-mm-yyyy" value="{{ old('tgl_lahir') }}" min="1997-01-01" max="2030-12-31" class="date form-control @error('tgl_lahir') is-invalid @enderror" required>
-
+                        @error('tgl_lahir')
+                            <div class="invalid-feedback">Masukkan Tanggal Lahir</div>
+                        @enderror
                     </div>
 
                     <div class="col-12">
@@ -111,7 +117,9 @@
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" required>
-                        <div class="invalid-feedback">Masukkan Email</div>
+                        @error('email')
+                            <div class="invalid-feedback">Masukkan Email</div>
+                        @enderror
                       </div>
                     </div>
 
